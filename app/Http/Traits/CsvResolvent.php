@@ -15,9 +15,9 @@ trait CsvResolvent {
                     'row_id' => $key,
                     'name' => $item[0],
                     'surname' => $item[1],
-                    'email' => $item[2],
+                    'email' => $this->purgeEmail($item[2]),
                     'employee_id' => $item[3],
-                    'phone' => $this->phoneNumberExtract($item[4]),
+                    'phone' => $this->purgePhoneNumber($item[4]),
                     'point' => $item[5]
                 ];
         });
@@ -25,7 +25,7 @@ trait CsvResolvent {
         return $mappedCollection;
     }
 
-    protected function phoneNumberExtract($phoneNumber)
+    protected function purgePhoneNumber($phoneNumber)
     {
         $phoneNumber = trim(preg_replace('/\D/', "", $phoneNumber));
 
@@ -34,5 +34,13 @@ trait CsvResolvent {
         }
 
         return $phoneNumber;
+    }
+
+    protected function purgeEmail($email) {
+        return str_replace(
+            ['ğ', 'ü',  'ö', 'ı', 'ş', 'ç'],
+            ['g', 'u',  'o', 'i', 's', 'c'],
+            strtolower($email)
+        );
     }
 }
