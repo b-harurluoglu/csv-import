@@ -28,7 +28,7 @@ class StoreCampaignRequest extends FormRequest
         return [
             'name' => 'required|string',
             'date' => 'required|date|date_format:Y-m',
-            'file' => 'required|mimes:csv,txt,xlx,xls',
+            'file' => 'required|mimetypes:text/csv,text/plain'
         ];
     }
 
