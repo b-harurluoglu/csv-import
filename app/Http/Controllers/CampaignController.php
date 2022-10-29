@@ -38,8 +38,8 @@ class CampaignController extends Controller
             if ($validator->fails()) {
                 $notImportend->push(['data' => $data , 'errors' => $validator->errors()]);
             } else {
-                $CampaignUser = $campaign->users()->create($validator->validated());
-                if($CampaignUser) {
+                $campaignUser = $campaign->users()->create($validator->validated());
+                if($campaignUser) {
                     $importend->push(['data' => $data]);
                 }
             }
