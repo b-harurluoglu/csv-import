@@ -4,7 +4,7 @@ namespace App\Http\Traits;
 
 trait CsvResolvent {
 
-    public function CsvToCollection($file) {
+    public function csvToCollection($file) {
 
         $filePath = $file->getRealPath();
         $datas = collect(array_map('str_getcsv', file($filePath)))->slice(1);

@@ -26,7 +26,7 @@ class CampaignController extends Controller
             'date' => $request->input('date').'-01'
         ]);
 
-        $datas = $this->CsvToCollection($request->file('file'));
+        $datas = $this->csvToCollection($request->file('file'));
 
         $importend = collect();
         $notImportend = collect();
